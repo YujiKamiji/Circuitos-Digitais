@@ -1,0 +1,32 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Mux8Bits is
+    Port (
+        D0 : in STD_LOGIC_VECTOR(7 downto 0);  -- Entrada 0 de 8 bits
+        D1 : in STD_LOGIC_VECTOR(7 downto 0);  -- Entrada 1 de 8 bits
+        D2 : in STD_LOGIC_VECTOR(7 downto 0);  -- Entrada 2 de 8 bits
+        D3 : in STD_LOGIC_VECTOR(7 downto 0);  -- Entrada 3 de 8 bits
+        Sel : in STD_LOGIC_VECTOR(1 downto 0); -- Seletor de 2 bits
+        Y : out STD_LOGIC_VECTOR(7 downto 0)   -- Saída de 8 bits
+    );
+end Mux8Bits;
+
+architecture Behavioral of Mux8Bits is
+begin
+    process (D0, D1, D2, D3, Sel)
+    begin
+        case Sel is
+            when "00" =>
+                Y <= D0;
+            when "01" =>
+                Y <= D1;
+            when "10" =>
+                Y <= D2;
+            when "11" =>
+                Y <= D3;
+            when others =>
+                Y <= (others => '0'); -- Saída padrão (opcional)
+        end case;
+    end process;
+end Behavioral;
